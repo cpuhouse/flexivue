@@ -1,0 +1,18 @@
+description = "Vue Loader"
+
+[viewBag]
+==
+{% macro _get(key) %}
+{% set package = {
+	'name': 										'http-vue-loader',
+	'version': 									'^1.4',
+	'dev:js/main': 							'src/httpVueLoader.js',
+	'prod:js/main': 						'src/httpVueLoader.min.js',
+} %}
+{{ package[key] }}
+{% endmacro %}
+
+{% macro getcdn(host, type, version, env) %}
+	{% import 'macros/getcdn' as cdn %}
+	{{ cdn.getcdn('npm/http-vue-loader', host, type, version, env) }}
+{% endmacro %}

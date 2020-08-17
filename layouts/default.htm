@@ -1,0 +1,38 @@
+description = "Default Layout"
+
+[staticPage]
+useContent = 1
+default = 1
+==
+<!DOCTYPE html>
+<html lang="en" data-layout="{{ this.layout.id }}" data-page="{{ this.page.id }}">
+	<head>
+		<link rel="canonical" href="{{ this.page.servername }}" />
+		{% partial 'common/prefetch' %}
+		{% partial 'common/meta' %}
+		{% partial 'common/icons' %}
+		{% partial 'common/typography' %}
+		{% partial 'common/scripts' %}
+		{% partial 'frameworks/'~this.theme.jsFramework %}
+		<title>
+			{{ this.page.title|default('')|_ }} | 
+			{{ this.theme.siteName|default('Flexivue theme')|_ }}
+		</title>
+	</head>
+	<body data-spy="scroll" data-offset="0" data-target="#mainMenu">
+		
+		<noscript>
+			<div class="alert alert-warning" role="alert">
+				{{ 'You must enable javascript to view this page'|_ }}
+			</div>
+		</noscript>
+
+		<header id="header"></header>
+		<main   id="content" class="app">{% page %}</main>
+		<footer id="footer"></footer>
+
+		{% styles %}
+		{% scripts %}
+
+	</body>
+</html>

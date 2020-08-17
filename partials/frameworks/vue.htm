@@ -1,0 +1,25 @@
+description = "VueJs"
+
+[viewBag]
+==
+{% set cdn = {
+	'enabled'		: this.theme.cdnEnabled|default(true),
+	'provider'	: this.theme.cdnProvider,
+	'url'				: this.theme.cdnProviderBaseUrl,
+} %}
+
+{% set vuecfg = {
+	'version'					: this.theme.vueFrameworkVersion,
+	'uiFramework'			: this.theme.vueCssFramework,
+	'uiFrameworkVer'	: this.theme.vueCssFrameworkVersion,
+	'vueLoader'				: this.theme.vueLoader,
+	'vuex'						: this.theme.vueVuex,
+} %}
+
+{% if cdn.enabled %}
+	{% partial 'cdn/vue' cdn=cdn vuecfg=vuecfg %}
+{% endif %}
+
+{% set inline = this.theme.inlineAssets|default(true) %}
+
+{% partial 'scripts/vue-entrypoint' %}

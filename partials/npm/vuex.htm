@@ -1,0 +1,21 @@
+description = "Vuex"
+
+[viewBag]
+==
+{% macro _get(key) %}
+{% set package = {
+	'name': 										'vuex',
+	'version': 									'3.5.1',
+	'dev:js/main': 							'dist/vuex.js',
+	'dev:js/common': 						'dist/vuex.common.js',
+	'dev:js/esm.browser': 			'dist/vuex.esm.browser.js',
+	'prod:js/main': 						'dist/vuex.min.js',
+	'prod:js/esm.browser': 			'dist/vuex.esm.browser.min.js',
+} %}
+{{ package[key] }}
+{% endmacro %}
+
+{% macro getcdn(host, type, version, env) %}
+	{% import 'macros/getcdn' as cdn %}
+	{{ cdn.getcdn('npm/vuex', host, type, version, env) }}
+{% endmacro %}

@@ -1,0 +1,19 @@
+description = "Common Scripts"
+
+[viewBag]
+==
+{% put scripts %}
+	<script 
+		src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver" 
+		crossorigin="anonymous">
+	</script>
+
+	<script defer src="https://cdn.jsdelivr.net/npm/web-vitals@0.2.4/dist/web-vitals.es5.umd.min.js"></script>
+	<script>
+		addEventListener('DOMContentLoaded', function() {
+			webVitals.getCLS(console.log);
+			webVitals.getFID(console.log);
+			webVitals.getLCP(console.log);
+		});
+	</script>
+{% endput %}

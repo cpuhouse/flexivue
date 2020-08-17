@@ -1,0 +1,26 @@
+description = "Vue"
+
+[viewBag]
+==
+{% macro _get(key) %}
+{% set package = {
+	'name': 										'vue',
+	'version': 									'^2.6',
+	'dev:js/main': 							'dist/vue.js',
+	'dev:js/common': 						'dist/vue.common.dev.js',
+	'dev:js/esm.browser':				'dist/vue.esm.browser.js',
+	'dev:js/runtime.common': 		'dist/vue.runtime.common.dev.js',
+	'dev:js/runtime': 					'dist/vue.runtime.js',
+	'prod:js/main': 						'dist/vue.min.js',
+	'prod:js/common': 					'dist/vue.common.prod.js',
+	'prod:js/esm.browser':			'dist/vue.esm.browser.min.js',
+	'prod:js/runtime.common': 	'dist/vue.runtime.common.prod.js',
+	'prod:js/runtime': 					'dist/vue.runtime.min.js',
+} %}
+{{ package[key] }}
+{% endmacro %}
+
+{% macro getcdn(host, type, version, env) %}
+	{% import 'macros/getcdn' as cdn %}
+	{{ cdn.getcdn('npm/vue', host, type, version, env) }}
+{% endmacro %}

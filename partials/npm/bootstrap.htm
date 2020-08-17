@@ -1,0 +1,32 @@
+description = "Bootstrap"
+
+[viewBag]
+==
+{% macro _get(key) %}
+{% set package = {
+	'name': 							'bootstrap',
+	'version': 						'4.5.2',
+	'dev:css/main': 			'dist/css/bootstrap.css',
+	'dev:css/grid': 			'dist/css/bootstrap-grid.css',
+	'dev:css/reboot':			'dist/css/bootstrap-reboot.css',
+	'dev:js/main': 				'dist/js/bootstrap.js',
+	'dev:js/bundle':			'dist/js/bootstrap-bundle.js',
+	'dev:scss/main':			'scss/bootstrap.scss',
+	'dev:scss/grid': 			'scss/bootstrap-grid.scss',
+	'dev:scss/reboot': 		'scss/bootstrap-reboot.scss',
+	'prod:css/main': 			'dist/css/bootstrap.min.css',
+	'prod:css/grid': 			'dist/css/bootstrap-grid.min.css',
+	'prod:css/reboot':		'dist/css/bootstrap-reboot.min.css',
+	'prod:js/main': 			'dist/js/bootstrap.min.js',
+	'prod:js/bundle':			'dist/js/bootstrap-bundle.min.js',
+	'prod:scss/main':			'scss/bootstrap.scss',
+	'prod:scss/grid': 		'scss/bootstrap-grid.scss',
+	'prod:scss/reboot': 	'scss/bootstrap-reboot.scss',
+} %}
+{{ package[key] }}
+{% endmacro %}
+
+{% macro getcdn(host, type, version, env) %}
+	{% import 'macros/getcdn' as cdn %}
+	{{ cdn.getcdn('npm/bootstrap', host, type, version, env) }}
+{% endmacro %}

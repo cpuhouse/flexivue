@@ -1,0 +1,367 @@
+name: Flexivue
+description: 'Flexivue is a multi-framework, Vue enabled theme for OctoberCMS.'
+author: Cpuhouse
+homepage: 'https://github.com/cpuhouse/flexivue'
+code: cloud.cpuhouse.flexivue
+require:
+    - RainLab.Pages
+    - RainLab.Translate
+    - Newride.InlineAssets
+    - VojtaSvoboda.TwigExtensions
+form:
+    tabs:
+        fields:
+            brandingSection:
+                tab: Branding
+                label: 'Website Information'
+                type: section
+                span: full
+            brandingLogo:
+                tab: Branding
+                label: 'Website Logo'
+                type: mediafinder
+                size: small
+                mode: image
+                span: storm
+                cssClass: col-md-3
+            brandingLogoSize:
+                tab: Branding
+                label: 'Logo Size'
+                type: balloon-selector
+                span: storm
+                cssClass: col-md-3
+                default: auto
+                options:
+                    auto: Original
+                    96px: Medium
+                    80px: Small
+            brandingSlogan:
+                tab: Branding
+                label: 'Website Slogan'
+                comment: 'The website slogan as it should appear on the front-end'
+                placeholder: 'Your website slogan'
+                type: text
+                span: storm
+                cssClass: col-md-9
+            brandingAddress:
+                tab: Branding
+                label: Address
+                type: text
+                span: storm
+                cssClass: col-md-12
+            brandingEmail:
+                tab: Branding
+                label: E-Mail
+                type: text
+                span: storm
+                cssClass: col-md-8
+            brandingTelephone:
+                tab: Branding
+                label: Telephone
+                type: text
+                span: storm
+                cssClass: col-md-4
+            socialSection:
+                tab: Social
+                label: 'Social Networks'
+                type: section
+                span: full
+            socialLinks:
+                tab: Social
+                type: repeater
+                form:
+                    fields:
+                        socialNetwork:
+                            label: 'Social Network'
+                            type: awesomeiconslist
+                            iconTypes: brands
+                            emptyOption: true
+                            span: storm
+                            cssClass: col-md-4
+                        showSocialNetworkName:
+                            label: 'Show the social network name'
+                            type: balloon-selector
+                            default: 'off'
+                            options:
+                                'on': 'On'
+                                'off': 'Off'
+                            span: storm
+                            cssClass: col-md-8
+                        socialProfileUrl:
+                            label: 'Profile Url'
+                            type: text
+                            placeholder: 'ex. https://facebook.com/your_company'
+                            span: storm
+                            cssClass: col-md-12
+            colorsSection:
+                tab: Colors
+                label: 'Color Settings'
+                comment: 'Create and/or move pallete to top to select it'
+                type: section
+                span: full
+            colorPalletes:
+                tab: Colors
+                type: repeater
+                form:
+                    fields:
+                        colorPallete:
+                            label: 'Pallete name'
+                            type: text
+                            emptyOption: false
+                            span: full
+                        lightShades:
+                            label: 'Light shades'
+                            type: colorpicker
+                            showAlpha: false
+                            availableColors: {  }
+                            span: storm
+                            cssClass: col-md-2
+                        lightAccent:
+                            label: 'Light accent'
+                            type: colorpicker
+                            showAlpha: false
+                            availableColors: {  }
+                            span: storm
+                            cssClass: col-md-2
+                        mainBrand:
+                            label: 'Main brand color'
+                            type: colorpicker
+                            showAlpha: false
+                            availableColors: {  }
+                            span: storm
+                            cssClass: col-md-2
+                        darkAccent:
+                            label: 'Dark accent'
+                            type: colorpicker
+                            showAlpha: false
+                            availableColors: {  }
+                            span: storm
+                            cssClass: col-md-2
+                        darkShades:
+                            label: 'Dark shades'
+                            type: colorpicker
+                            showAlpha: false
+                            availableColors: {  }
+                            span: storm
+                            cssClass: col-md-2
+            generalFrameworkSection:
+                tab: Framework
+                label: 'General Settings'
+                type: section
+                span: storm
+                cssClass: col-md-12
+            frameworkDevel:
+                tab: Framework
+                label: 'Framework Environment'
+                comment: 'Are you running a development instance?'
+                type: balloon-selector
+                default: true
+                options:
+                    1: 'Yes'
+                    0: 'No'
+                span: storm
+                cssClass: col-md-12
+            jsFrameworkSection:
+                tab: Framework
+                label: 'JS Framework Settings'
+                type: section
+                span: storm
+                cssClass: col-md-12
+            jsFramework:
+                tab: Framework
+                label: 'Javascript Framework'
+                comment: 'The javascript framework to be used'
+                type: dropdown
+                default: vue
+                options:
+                    jquery: JQuery
+                    vue: VueJS
+                span: storm
+                cssClass: col-md-3
+            jsFrameworkVersion:
+                tab: Framework
+                label: Version
+                comment: 'Selected Javascript framework version (CDN only)'
+                type: dropdown
+                default: theme
+                options:
+                    latest: 'Latest release'
+                    theme: 'Use theme settings'
+                trigger:
+                    action: hide
+                    field: jsFramework
+                    condition: 'value[none]'
+                span: storm
+                cssClass: col-md-3
+            cssFrameworkSection:
+                tab: Framework
+                label: 'CSS Framework Settings'
+                type: section
+                trigger:
+                    action: hide
+                    field: jsFramework
+                    condition: 'value[none]'
+                span: storm
+                cssClass: col-md-12
+            vueCssFramework:
+                tab: Framework
+                label: 'CSS Framework'
+                comment: 'The CSS framework to be used'
+                type: dropdown
+                show: false
+                default: bootstrap
+                options:
+                    0: None
+                    bootstrap: 'Bootstrap Only'
+                    bootstrap-vue: Bootstrap-Vue
+                trigger:
+                    action: show
+                    field: jsFramework
+                    condition: 'value[vue]'
+                span: storm
+                cssClass: col-md-3
+            vueCssFrameworkVersion:
+                tab: Framework
+                label: Version
+                comment: 'Select CSS framework version (CDN only)'
+                type: dropdown
+                show: false
+                default: theme
+                options:
+                    latest: 'Latest release'
+                    theme: 'Use theme settings'
+                trigger:
+                    action: show
+                    field: jsFramework
+                    condition: 'value[vue]'
+                span: storm
+                cssClass: col-md-3
+            vueLoader:
+                tab: Framework
+                label: 'Load components from .vue files'
+                type: checkbox
+                show: false
+                default: false
+                trigger:
+                    action: show
+                    field: jsFramework
+                    condition: 'value[vue]'
+                span: storm
+                cssClass: col-md-12
+            vueVuex:
+                tab: Framework
+                label: 'Load Vuex extension'
+                type: checkbox
+                show: false
+                default: false
+                trigger:
+                    action: show
+                    field: jsFramework
+                    condition: 'value[vue]'
+                span: storm
+                cssClass: col-md-12
+            jqueryCssFramework:
+                tab: Framework
+                label: 'CSS Framework'
+                comment: 'The CSS framework to be used'
+                type: dropdown
+                show: false
+                default: bootstrap-jquery
+                options:
+                    none: None
+                    bootstrap-css: 'Bootstrap CSS Only'
+                    bootstrap-jquery: Bootstrap+PopplerJS+JQuery
+                    jquery-ui: JQuery-UI
+                trigger:
+                    action: show
+                    field: jsFramework
+                    condition: 'value[jquery]'
+                span: storm
+                cssClass: col-md-3
+            jqueryCssFrameworkVersion:
+                tab: Framework
+                label: Version
+                comment: 'The CSS framework version to load (CDN only)'
+                type: dropdown
+                show: false
+                default: theme
+                options:
+                    latest: 'Latest release'
+                    theme: 'Use theme settings'
+                trigger:
+                    action: show
+                    field: jsFramework
+                    condition: 'value[jquery]'
+                span: storm
+                cssClass: col-md-3
+            cdnSection:
+                tab: CDN
+                type: section
+                label: 'CDN Settings'
+                span: storm
+                cssClass: col-md-12
+            cdnEnabled:
+                tab: CDN
+                label: 'Enable CDN'
+                comment: 'Should I prefer to load framework from CDN?'
+                type: balloon-selector
+                default: true
+                options:
+                    1: 'Yes'
+                    0: 'No'
+                span: storm
+                cssClass: col-md-12
+            cdnProvider:
+                tab: CDN
+                label: 'Default CDN provider'
+                type: dropdown
+                default: cdn.jsdelivr.net/npm
+                options:
+                    cdn.jsdelivr.net/npm: 'JsDelivr NPM'
+                    unpkg.com: 'UnPKG NPM'
+                dependsOn: cdnEnabled
+                trigger:
+                    action: disable
+                    field: cdnEnabled
+                    condition: 'value[0]'
+                span: storm
+                cssClass: col-md-3
+            cdnProviderBaseUrl:
+                tab: CDN
+                label: 'CDN URL template'
+                comment: 'replace <package>, <version> and <file> on the URL above (ex. //unpkg.com/react@16.7.0/umd/react.production.min.js)'
+                type: dropdown
+                readOnly: true
+                valueFrom: cdnProvider
+                dependsOn: cdnProvider
+                options:
+                    cdn.jsdelivr.net/npm: '//cdn.jsdelivr.net/npm/{{package}}@{{version}}/{{file}}'
+                    unpkg.com: '//unpkg.com/{{package}}@{{version}}/{{file}}'
+                span: storm
+                cssClass: col-md-9
+            cdnPackagesSection:
+                tab: CDN
+                type: section
+                label: 'Extra Packages'
+                dependsOn: cdnEnabled
+                trigger:
+                    action: hide
+                    field: cdnEnabled
+                    condition: 'value[0]'
+                span: storm
+                cssClass: col-md-12
+            cdnPackagesHint:
+                tab: CDN
+                type: nestedform
+                usePanelStyles: false
+                label: 'To add a new NPM package, create a partial under npm folder at CMS section. See exiting files for examples.'
+                readOnly: true
+                span: storm
+                cssClass: col-md-12
+            aboutSection:
+                tab: About
+                type: section
+                label: 'Flexivue theme for OctoberCMS'
+                comment: '2020 © Cpuhouse - Licenced under MIT license'
+                span: storm
+                cssClass: col-md-12

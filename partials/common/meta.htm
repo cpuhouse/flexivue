@@ -1,0 +1,21 @@
+description = "Meta Tags"
+
+[viewBag]
+==
+<meta charset="utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="{{ this.page.meta_description }}" />
+<meta name="keywords" content="{{ this.page.meta_keywords }}" />
+<meta name="author" content="{{ this.page.meta_author }}" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="index, nofollow" />
+<meta name="robots" content="noimageindex" />
+<meta name="robots" content="notranslate" />
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ this.page.title|default(this.page.name)|_ }}">
+<meta property="og:site_name" content="{{ this.theme.siteName|default('Flexivue theme')|_ }}">
+<meta property="og:image" content="{{ 'assets/images/theme-preview.png'|theme }}">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="375">

@@ -1,0 +1,32 @@
+description = "BootstrapVue"
+
+[viewBag]
+==
+{% macro _get(key) %}
+{% set package = {
+	'name': 								'bootstrap-vue',
+	'version': 							'^2.16',
+	'dev:css/main': 				'dist/bootstrap-vue.css',
+	'dev:css/icons':				'dist/bootstrap-vue-icons.css',
+	'dev:js/main': 					'dist/bootstrap-vue.js',
+	'dev:js/common': 				'dist/bootstrap-vue-common.js',
+	'dev:js/esm': 					'dist/bootstrap-vue-esm.js',
+	'dev:js/icons':					'dist/bootstrap-vue-icons.js',
+	'dev:js/icons.common': 	'dist/bootstrap-vue-icons-common.js',
+	'dev:js/icons.esm':			'dist/bootstrap-vue-icons-esm.js',
+	'prod:css/main':				'dist/bootstrap-vue.min.css',
+	'prod:css/icons': 			'dist/bootstrap-vue-icons.min.css',
+  'prod:js/main': 				'dist/bootstrap-vue.min.js',
+	'prod:js/common':				'dist/bootstrap-vue-common.min.js',
+	'prod:js/esm':					'dist/bootstrap-vue-esm.min.js',
+	'prod:js/icons':				'dist/bootstrap-vue-icons.min.js',
+	'prod:js/icons.common':	'dist/bootstrap-vue-icons-common.min.js',
+	'prod:js/icons.esm':		'dist/bootstrap-vue-icons-esm.min.js',
+} %}
+{{ package[key] }}
+{% endmacro %}
+
+{% macro getcdn(host, type, version, env) %}
+	{% import 'macros/getcdn' as cdn %}
+	{{ cdn.getcdn('npm/bootstrap-vue', host, type, version, env) }}
+{% endmacro %}

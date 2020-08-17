@@ -1,0 +1,40 @@
+description = "Vue via CDN"
+
+[viewBag]
+==
+{% set env = this.theme.frameworkDevel ? 'dev' : 'prod' %}
+
+{% import 'npm/vue' as vue %}
+{% if vuecfg.vuex %}
+	{% import 'npm/vuex' as vuex %}
+{% endif %}
+{% if vuecfg.vueLoader %}
+	{% import 'npm/http-vue-loader' as vueloader %}
+{% endif %}
+{% if vuecfg.uiFramework and vuecfg.uiFramework != 'bootstrap' %}
+	{% import 'npm/' ~ vuecfg.uiFramework as vueui %}
+{% endif %}
+
+{% if vuecfg.uiFramework %}
+	{% import 'npm/bootstrap' as bootstrap %}
+	{% put styles %}
+		<link type="text/css" rel="stylesheet" href="https:{{ bootstrap.getcdn(cdn.url, 'css/main', '', env)|trim }}" />
+		{% if vuecfg.uiFramework != 'bootstrap' %}
+			<link type="text/css" rel="stylesheet" href="https:{{ vueui.getcdn(cdn.url, 'css/main', '', env)|trim }}" />
+		{% endif %}
+	{% endput %}
+{% endif %}
+
+{% put scripts %}
+	<script src="https:{{ vue.getcdn(cdn.url,'js/main', '', env)|trim }}" crossorigin="anonymous"></script>
+	{% if vuecfg.vueLoader %}
+		<script src="https:{{ vueloader.getcdn(cdn.url,'js/main', '', env)|trim }}" crossorigin="anonymous"></script>
+	{% endif %}
+	{% if vuecfg.vuex %}
+		<script async src="https:{{ vuex.getcdn(cdn.url,'js/main','', env)|trim }}" crossorigin="anonymous"></script>
+	{% endif %}
+	{% if vuecfg.uiFramework and vuecfg.uiFramework != 'bootstrap' %}
+		<script async src="https:{{ vueui.getcdn(cdn.url, 'js/main', '', env)|trim }}" crossorigin="anonymous"></script>
+		<!--<script async src="https:{{ vueui.getcdn(cdn.url, 'js/icons', '', env)|trim }}" crossorigin="anonymous"></script>-->
+	{% endif %}
+{% endput %}

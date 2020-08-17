@@ -1,0 +1,19 @@
+description = "getcdn macro"
+
+[viewBag]
+==
+{% macro getcdn(package, host, type, version, env) %}
+	{% import ''~(package) as pkg %}
+	{% set variant = (env == 'prod' ? 'prod:' : 'dev:') ~ type %}
+
+	{% set name = pkg._get('name')|trim %}
+	{% set version = version|default('latest') %}
+	{% set file = pkg._get(variant)|trim %}
+
+	{% if env == 'prod' and version == 'latest' %}
+		{% set version = pkg._get('version')|trim %}
+	{% endif %}
+
+	{% set url = '//'~host~'/'~name~'@'~version~'/'~file %}
+	{{ url|trim }}
+{% endmacro %}
