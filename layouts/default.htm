@@ -4,8 +4,10 @@ description = "Default Layout"
 useContent = 1
 default = 1
 ==
+{% partial 'common/license' %}
 <!DOCTYPE html>
-<html lang="en" data-layout="{{ this.layout.id }}" data-page="{{ this.page.id }}">
+<html lang="en" data-layout="{{ this.layout.id }}" data-page="{{ this.page.id }}"
+	class="csstransforms csstransforms3d csstransitions">
 	<head>
 		<link rel="canonical" href="{{ this.page.servername }}" />
 		{% partial 'common/prefetch' %}
@@ -31,6 +33,7 @@ default = 1
 		<main   id="content" class="app">{% page %}</main>
 		<footer id="footer"></footer>
 
+		{% partial "common/colors" %}
 		{% styles %}
 		{% scripts %}
 

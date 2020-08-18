@@ -9,7 +9,7 @@ description = "VueJs"
 } %}
 
 {% set vuecfg = {
-	'version'					: this.theme.vueFrameworkVersion,
+	'version'					: this.theme.jsFrameworkVersion,
 	'uiFramework'			: this.theme.vueCssFramework,
 	'uiFrameworkVer'	: this.theme.vueCssFrameworkVersion,
 	'vueLoader'				: this.theme.vueLoader,
@@ -19,7 +19,5 @@ description = "VueJs"
 {% if cdn.enabled %}
 	{% partial 'cdn/vue' cdn=cdn vuecfg=vuecfg %}
 {% endif %}
-
-{% set inline = this.theme.inlineAssets|default(true) %}
 
 {% partial 'scripts/vue-entrypoint' %}

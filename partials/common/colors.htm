@@ -1,0 +1,71 @@
+description = "Colors"
+
+[viewBag]
+==
+{% set pallete = this.theme.colorPalletes[0] %}
+
+{% set light_shades = pallete['lightShades'] %}
+{% set light_accent = pallete['lightAccent'] %}
+{% set main_brand   = pallete['mainBrand']   %}
+{% set dark_accent  = pallete['darkAccent']  %}
+{% set dark_shades  = pallete['darkShades']  %}
+
+{% put styles %}
+<style>
+	:root { 
+		--light-shades  {{ light_shades }} !important;
+		--light-accent: {{ light_accent }} !important;
+		--main-brand:   {{ main_brand   }} !important;
+		--dark-accent:  {{ dark_accent  }} !important;
+		--dark-shades:  {{ dark_shades  }} !important;
+		
+		--light:        {{ light_shades }} !important;
+		--primary:      {{ main_brand   }} !important; 
+		--secondary:    {{ light_accent }} !important;
+		--tertiary:     {{ dark_accent  }} !important;
+		--dark:         {{ dark_shades  }} !important;
+		
+		--text-light:   {{ light_shades }} !important;
+		--text-dark:    {{ dark_shades  }} !important;
+		--text-primary: {{ '#666'|raw   }} !important;
+	}
+
+	.bg-light, .btn-light {
+		background-color: {{ light_shades }} !important;
+	}
+	.bg-primary, .btn-secondary {
+		background-color: {{ main_brand   }} !important;
+	}
+	.bg-secondary, .btn-primary {
+		background-color: {{ light_accent }} !important;
+	}
+	.bg-tertiary, .btn-tertiary {
+		background-color: {{ dark_accent  }} !important;
+	}
+	.bg-dark, .btn-dark {
+		background-color: {{ dark_shades  }} !important;
+	}
+
+
+	.transparent { opacity: 0 !important; }
+	.semi-transparent { opacity: .075 !important; }
+	.opacity-1 { opacity: .25 !important; }
+	.opacity-2 { opacity: .33 !important; }
+	.opacity-3 { opacity: .50 !important; }
+	.opacity-4 { opacity: .66 !important; }
+	.opacity-5 { opacity: .75 !important; }
+	.semi-opaque { opacity: .925 !important; }
+	.opaque { opacity: 1 !important; }
+
+	/* Maybe even support hover opacity shifts */
+	.opacity-0h5 {
+		opacity: 0 !important;
+		transition: opacity .25s ease-in-out !important;
+		-moz-transition: opacity .25s ease-in-out !important;
+		-webkit-transition: opacity .25s ease-in-out !important;
+	}
+	.opacity-0h5:hover {
+		opacity: 1 !important;
+	}
+</style>
+{% endput %}

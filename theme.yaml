@@ -2,10 +2,11 @@ name: Flexivue
 description: 'Flexivue is a multi-framework, Vue enabled theme for OctoberCMS.'
 author: Cpuhouse
 homepage: 'https://github.com/cpuhouse/flexivue'
-code: cloud.cpuhouse.flexivue
+code: cloud-cpuhouse-flexivue
 require:
     - RainLab.Pages
     - RainLab.Translate
+    - GinoPane.AwesomeIconsList
     - Newride.InlineAssets
     - VojtaSvoboda.TwigExtensions
 form:
