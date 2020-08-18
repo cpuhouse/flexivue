@@ -1,0 +1,31 @@
+description = "JQuery via CDN"
+
+[viewBag]
+==
+{% set env = this.theme.frameworkDevel ? 'dev' : 'prod' %}
+
+{% import 'npm/jquery' as jquery %}
+{% if jqcfg.uiFramework == 'bootstrap-jquery' %}
+	{% import 'npm/popperjs' as popperjs %}
+{% endif %}
+{% if jqcfg.uiFramework == 'jquery-ui' %}
+	{% import 'npm/jquery-ui' as jqueryui %}
+{% endif %}
+
+{% if jqcfg.uiFramework %}
+	{% import 'npm/bootstrap' as bootstrap %}
+	{% put styles %}
+		<link type="text/css" rel="stylesheet" href="https:{{ bootstrap.getcdn(cdn.url, 'css/main', '', env)|trim }}" />
+	{% endput %}
+{% endif %}
+
+{% put scripts %}
+	<script src="https:{{ jquery.getcdn(cdn.url,'js/main', '', env)|trim }}" crossorigin="anonymous"></script>
+	{% if jqcfg.uiFramework == 'bootstrap-jquery' %}
+		<script async src="https:{{ bootstrap.getcdn(cdn.url, 'js/main', '', env)|trim }}" crossorigin="anonymous"></script>
+		<script async src="https:{{ popperjs.getcdn(cdn.url, 'js/umd', '', env)|trim }}" crossorigin="anonymous"></script>
+	{% endif %}
+	{% if jqcfg.uiFramework == 'jquery-ui' %}
+		<script async src="https:{{ jqueryui.getcdn(cdn.url, 'js/main', '', env)|trim }}" crossorigin="anonymous"></script>
+	{% endif %}
+{% endput %}

@@ -1,0 +1,20 @@
+description = "Jquery"
+
+[viewBag]
+==
+{% macro _get(key) %}
+{% set package = {
+	'name': 										'jquery',
+	'version': 									'^3.5',
+	'dev:js/main': 							'dist/jquery.js',
+	'dev:js/slim': 							'dist/jquery.slim.js',
+	'prod:js/main': 						'dist/jquery.min.js',
+	'prod:js/slim': 						'dist/jquery.slim.min.js',
+} %}
+{{ package[key] }}
+{% endmacro %}
+
+{% macro getcdn(host, type, version, env) %}
+	{% import 'macros/getcdn' as cdn %}
+	{{ cdn.getcdn('npm/jquery', host, type, version, env) }}
+{% endmacro %}

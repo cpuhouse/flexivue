@@ -1,0 +1,18 @@
+description = "Popper.Js"
+
+[viewBag]
+==
+{% macro _get(key) %}
+{% set package = {
+	'name': 										'popper.js',
+	'version': 									'^1.16',
+	'dev:js/umd': 							'dist/umd/popper.js',
+	'prod:js/umd': 							'dist/umd/popper.min.js',
+} %}
+{{ package[key] }}
+{% endmacro %}
+
+{% macro getcdn(host, type, version, env) %}
+	{% import 'macros/getcdn' as cdn %}
+	{{ cdn.getcdn('npm/popperjs', host, type, version, env) }}
+{% endmacro %}

@@ -1,0 +1,18 @@
+description = "JQuery UI Widget"
+
+[viewBag]
+==
+{% macro _get(key) %}
+{% set package = {
+	'name': 										'jquery-ui',
+	'version': 									'^1.12',
+	'dev:js/main': 							'ui/widget.js',
+	'prod:js/main': 						'ui/widget.min.js',
+} %}
+{{ package[key] }}
+{% endmacro %}
+
+{% macro getcdn(host, type, version, env) %}
+	{% import 'macros/getcdn' as cdn %}
+	{{ cdn.getcdn('npm/jquery-ui', host, type, version, env) }}
+{% endmacro %}

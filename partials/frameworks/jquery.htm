@@ -1,0 +1,21 @@
+description = "JQuery"
+
+[viewBag]
+==
+{% set cdn = {
+	'enabled'		: this.theme.cdnEnabled|default(true),
+	'provider'	: this.theme.cdnProvider,
+	'url'				: this.theme.cdnProviderBaseUrl,
+} %}
+
+{% set jqcfg = {
+	'version'					: this.theme.jsFrameworkVersion,
+	'uiFramework'			: this.theme.jqueryCssFramework,
+	'uiFrameworkVer'	: this.theme.jqueryCssFrameworkVersion,
+} %}
+
+{% if cdn.enabled %}
+	{% partial 'cdn/jquery' cdn=cdn jqcfg=jqcfg %}
+{% endif %}
+
+{% partial 'templates/example' %}
