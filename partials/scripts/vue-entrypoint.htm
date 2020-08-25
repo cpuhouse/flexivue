@@ -3,27 +3,21 @@ description = "Vue Application Entrypoint"
 [viewBag]
 ==
 {% put scripts %}
-{% if vuecfg.vueLoader %}
-	<script>
-	  Vue.use(httpVueLoader);
-		var vm = new Vue({
-			el: ".app",
-			components: {
-				'example': 'url:{{ "assets/components/example.vue"|theme }}',
-			},
-		});
-	</script>
-{% else %}
-{% set template = partial('templates/example')|raw|replace({"\n":"\\"}) %}
-	<script>
-		var vm = new Vue({
-			el: ".app",
-			components: {
-				'example': {
-					'template': '{{ template|raw }}',
+	{% if vuecfg.vueLoader %}
+		<script>
+		  Vue.use(httpVueLoader);
+			new Vue({
+				el: ".app",
+				components: {
+					{% placeholder vue %}
 				},
-			},
-		});
-	</script>
-{% endif %}
+			});
+		</script>
+	{% else %}
+		<script>
+			{% placeholder vue %}
+
+			new Vue({	el: ".app" });
+		</script>
+	{% endif %}
 {% endput %}

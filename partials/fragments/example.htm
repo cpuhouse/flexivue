@@ -7,5 +7,23 @@ snippetProperties[id][title] = "ID"
 snippetProperties[id][type] = "string"
 snippetProperties[id][default] = ""
 snippetProperties[id][options][] = ""
+snippetProperties[title][title] = "Title"
+snippetProperties[title][type] = "string"
+snippetProperties[title][default] = "It worked!"
+snippetProperties[title][options][] = ""
+snippetProperties[message][title] = "Message"
+snippetProperties[message][type] = "string"
+snippetProperties[message][default] = "Vue is loaded successfully."
+snippetProperties[message][options][] = ""
 ==
-<example id="{{ id }}"></example>
+{% set template = partial('templates/example')|raw|replace({"\n":"\\"}) %}
+
+{% put vue %}
+		Vue.component('example', {
+			delimiters: ['[[', ']]'],
+			props: [ 'title', 'message' ],
+			template: '{{ template|raw }}',
+		});
+{% endput %}
+
+<example id="{{ id }}" title="{{ title }}" message="{{ message }}"></example>

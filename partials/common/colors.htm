@@ -33,10 +33,11 @@ description = "Colors"
 	.bg-light, .btn-light {
 		background-color: {{ light_shades }} !important;
 	}
-	.bg-primary, .btn-secondary {
+	.bg-primary, .btn-primary {
 		background-color: {{ main_brand   }} !important;
+		border-color: transparent;
 	}
-	.bg-secondary, .btn-primary {
+	.bg-secondary, .btn-secondary {
 		background-color: {{ light_accent }} !important;
 	}
 	.bg-tertiary, .btn-tertiary {
@@ -46,6 +47,14 @@ description = "Colors"
 		background-color: {{ dark_shades  }} !important;
 	}
 
+	.mask-light {	
+		background-color: rgba(255,255,255,.75) !important;
+		color: {{ dark_shades }} !important;
+	}
+	.mask-dark {	
+		background-color: rgba(0,0,0,.75) !important;
+		color: {{ light_shades }} !important;
+	}
 
 	.transparent { opacity: 0 !important; }
 	.semi-transparent { opacity: .075 !important; }

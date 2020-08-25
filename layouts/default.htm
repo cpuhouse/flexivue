@@ -7,7 +7,7 @@ default = 1
 {% partial 'common/license' %}
 <!DOCTYPE html>
 <html lang="en" data-layout="{{ this.layout.id }}" data-page="{{ this.page.id }}"
-	class="csstransforms csstransforms3d csstransitions">
+	class="h-100 csstransforms csstransforms3d csstransitions">
 	<head>
 		<link rel="canonical" href="{{ this.page.servername }}" />
 		{% partial 'common/prefetch' %}
@@ -21,21 +21,24 @@ default = 1
 			{{ this.theme.siteName|default('Flexivue theme')|_ }}
 		</title>
 	</head>
-	<body data-spy="scroll" data-offset="0" data-target="#mainMenu">
+	<body class="d-flex flex-column h-100" data-spy="scroll" data-offset="0" data-target="#mainMenu">
+		<div class="">
+			<noscript>
+				<div class="alert alert-warning" role="alert">
+					{{ 'You must enable javascript to view this page'|_ }}
+				</div>
+			</noscript>
+		</div>
 		
-		<noscript>
-			<div class="alert alert-warning" role="alert">
-				{{ 'You must enable javascript to view this page'|_ }}
-			</div>
-		</noscript>
-
-		<header id="header"></header>
-		<main   id="content" class="app">{% page %}</main>
-		<footer id="footer"></footer>
-
-		{% partial "common/colors" %}
+		<header id="header" class="bg-primary p-3"></header>
+		<main id="main" role="content" class="app d-flex">
+			{% page %}
+		</main>
+		<footer id="footer" class="bg-primary p-3"></footer>
+		
+		{% partial "common/colors" %}		
 		{% styles %}
-		{% scripts %}
 
+		{% scripts %}
 	</body>
 </html>
